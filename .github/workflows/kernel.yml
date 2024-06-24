@@ -32,9 +32,10 @@ jobs:
         PYTHON_VERSION: 2
       with:
         arch: arm64
-        compiler: proton-clang/master
+        compiler: aosp-clang/android13-release/clang-r450784d
         defconfig: vendor/spes-perf_defconfig
         image: Image.gz
+        image: dtbo.img
 
     - name: Release build
       uses: appleboy/telegram-action@master
