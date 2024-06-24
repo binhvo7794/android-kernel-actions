@@ -11,9 +11,9 @@ jobs:
     - name: Checkout kernel source
       uses: actions/checkout@v4
       with:
-        repository: binhvo7794/kernel_spes_asending
+        repository: AOSPA/android_kernel_xiaomi_sm6225
         path: kernel_xiaomi_sm6225
-        ref: spes-upstream
+        ref: topaz
 
     - name: Checkout zipper
       uses: actions/checkout@v4
