@@ -32,7 +32,7 @@ jobs:
         PYTHON_VERSION: 2
       with:
         arch: arm64
-        compiler: aosp-clang/android13-release/clang-r450784d/binutils
+        compiler: proton-clang/master
         defconfig: vendor/spes-perf_defconfig
         image: Image.gz
 
