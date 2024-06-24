@@ -1,0 +1,38 @@
+name: Build StockKernel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout kernel source
+      uses: actions/checkout@v4
+      with:
+        repository: CHRISL7/kernel_xiaomi_sm6225
+        path: kernel_xiaomi_sm6225
+        ref: topaz
+
+    - name: Checkout zipper
+      uses: actions/checkout@v4
+      with:
+        repository: binhvo7794/AnyKernel3
+        path: AnyKernel3
+        ref: spes
+
+    - name: Android kernel build
+      uses: binhvo7794/android-kernel-actions@master
+      id: build
+      env:
+        NAME: StockKernel
+        KERNEL_PATH: kernel_xiaomi_sm6225
+        ZIPPER_PATH: AnyKernel3
+        PYTHON_VERSION: 2
+      with:
+        arch: arm64
+        compiler: aosp-clang/android12-release/clang-r416183b/binutils
+        defconfig: vendor/spes-perf_defconfig
+        image: Image.gz
+        
