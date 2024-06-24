@@ -11,7 +11,7 @@ jobs:
     - name: Checkout kernel source
       uses: actions/checkout@v4
       with:
-        repository: TheMatheusDev/karamelsu
+        repository: binhvo7794/kernel_spes_asending
         path: kernel_xiaomi_sm6225
         ref: spes-upstream
 
@@ -32,7 +32,7 @@ jobs:
         PYTHON_VERSION: 2
       with:
         arch: arm64
-        compiler: aosp-clang/android12-release/clang-r416183b/binutils
+        compiler: aosp-clang/android13-release/clang-r450784d/binutils
         defconfig: vendor/spes-perf_defconfig
         image: Image.gz
 
