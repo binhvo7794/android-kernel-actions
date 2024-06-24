@@ -34,8 +34,7 @@ jobs:
         arch: arm64
         compiler: aosp-clang/android13-release/clang-r450784d
         defconfig: vendor/spes-perf_defconfig
-        image: Image.gz
-        image: dtbo.img
+        image: Image.gz dtbo.img
 
     - name: Release build
       uses: appleboy/telegram-action@master
