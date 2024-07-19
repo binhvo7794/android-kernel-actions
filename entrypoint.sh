@@ -209,7 +209,7 @@ if ! make O=out $arch_opts $make_opts $host_make_opts "$defconfig"; then
 fi
 msg "Begin building kernel..."
 
-make O=out $arch_opts $make_opts $host_make_opts -j"$(nproc --all)" prepare
+make O=out $arch_opts $make_opts $host_make_opts -j"$(nproc --all)" Image.gz dtbo prepare
 
 if ! make O=out $arch_opts $make_opts $host_make_opts -j"$(nproc --all)"; then
     err "Failed building kernel, probably the toolchain is not compatible with the kernel, or kernel source problem"
@@ -219,10 +219,11 @@ set_output elapsed_time "$(echo "$(date +%s)"-"$start_time" | bc)"
 msg "Packaging the kernel..."
 zip_filename="${name}-${tag}-${date}.zip"
 if [[ -e "$workdir"/"$zipper_path" ]]; then
-    cp out/arch/"$arch"/boot/"$image" "$workdir"/"$zipper_path"/"$image"
+    cp out/arch/"$arch"/boot/Image.gz "$workdir"/"$zipper_path"/Image.gz
+    cp out/arch/"$arch"/boot/dtbo.img "$workdir"/"$zipper_path"/dtbo.img
     cd "$workdir"/"$zipper_path" || exit 127
     rm -rf .git
-    zip -r9 "$zip_filename" . -x .gitignore README.md || exit 127
+    zip -r9 "$zip_filename" . -x .git .gitignore README.md || exit 127
     set_output outfile "$workdir"/"$zipper_path"/"$zip_filename"
     cd "$workdir" || exit 127
     exit 0
